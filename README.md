@@ -1,1 +1,4 @@
-# struct_data_in_javascript
+# Struct Data In Javascript
+
+#### ArraySingleNode
+##### Linked list, made from scratch, only one link direction
