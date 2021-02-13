@@ -38,6 +38,28 @@ class ArrayDoubleLink {
     this.head = newNode
   }
 
+  pop = () => {
+    if(this.head === null) {
+      return undefined
+    }
+    let data
+    let previous = this.head
+    let node = previous.next
+    while(node !== null) {
+      data = node.data
+      previous = node
+      node = node.next
+    }
+    if(this.head === previous) {
+      data = this.head.data
+      this.head = null
+    } else {
+      const previousLast = previous.previous
+      previousLast.next = null
+    }
+    return data
+  }
+
   toString = () => {
     let node = this.head
     let str = '[ '
@@ -66,15 +88,13 @@ class ArrayDoubleLink {
 }
 
 const arr = new ArrayDoubleLink()
-arr.push(1)
 arr.push(3)
+console.log(arr.pop())
 arr.push(5)
-arr.push(7)
-arr.push(9)
-arr.unshift(-2)
-arr.unshift(-4)
-arr.unshift(-6)
-const arrStr = arr.toString()
-const arrStrReverse = arr.toStringReverse()
-console.log('array string: ', arrStr)
-console.log('reverse: ', arrStrReverse)
+arr.push(8)
+arr.push(11)
+arr.push(15)
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.pop())
