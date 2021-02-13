@@ -41,20 +41,27 @@ class ArraySingleLink {
 
   isEmpty = () => this.head === null
 
-  // pop = () => {
-  //   if(this.head.nextNode === null) {
-  //     this.head = null
-  //     return this
-  //   }
-  //   let previousNode = this.head
-  //   let nodeNow = previousNode.nextNode
-  //   while(nodeNow.nextNode !== null) {
-  //     previousNode = nodeNow
-  //     nodeNow = nodeNow.nextNode
-  //   }
-  //   previousNode.nextNode = null
-  //   return this
-  // }
+  pop = () => {
+    if(this.isEmpty()) {
+      return undefined
+    }
+    let data
+    if(this.head.next === null) {
+      data = this.head.data
+      this.head = null
+    } else {
+      let previous = this.head
+      let node = previous.next
+      while(node.next !== null) {
+        previous = node
+        node = node.next
+      }
+      data = node.data
+      previous.next = null
+    }
+    --this.count
+    return data
+  }
 
   // shift = () => {
   //   this.head = this.head.nextNode
@@ -152,10 +159,9 @@ class ArraySingleLink {
   }
 }
 
-const arr = new ArraySingleLink
-console.log(arr.push(3))
-console.log(arr.push(5))
-console.log(arr.unshift(7))
-console.log(arr.unshift(11))
-console.log(arr.unshift(15))
-console.log(arr.toString())
+const arr = new ArraySingleLink()
+arr.push(3)
+arr.push(5)
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.pop())
