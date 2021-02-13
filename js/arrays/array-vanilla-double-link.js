@@ -28,7 +28,15 @@ class ArrayDoubleLink {
     node.next = newNode
   }
 
-
+  unshift = data => {
+    if(this.head === null) {
+      this.head = new Node(data)
+      return
+    }
+    const newNode = new Node(data, null, this.head)
+    this.head.previous = newNode
+    this.head = newNode
+  }
 
   toString = () => {
     let node = this.head
@@ -63,7 +71,10 @@ arr.push(3)
 arr.push(5)
 arr.push(7)
 arr.push(9)
+arr.unshift(-2)
+arr.unshift(-4)
+arr.unshift(-6)
 const arrStr = arr.toString()
 const arrStrReverse = arr.toStringReverse()
-console.log(arrStrReverse)
-console.log(arrStr)
+console.log('array string: ', arrStr)
+console.log('reverse: ', arrStrReverse)
