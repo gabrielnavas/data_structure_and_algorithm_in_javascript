@@ -73,22 +73,17 @@ class ArraySingleLink {
     return data
   }
 
-  // reverse = () => {
-  //   const reverseRecursive = (nodeNow) => {
-  //     if(nodeNow.nextNode !== null) {
-  //       const nextNode = reverseRecursive(nodeNow.nextNode)
-  //       if(nextNode.nextNode === null) {
-  //         this.head = nodeNow
-  //         return nodeNow
-  //       }
-  //       nextNode.nextNode = nodeNow
-  //     } 
-  //     return nodeNow
-  //   }
-  //   const lastNode = reverseRecursive(this.head)
-  //   lastNode.nextNode = null
-  //   return this
-  // }
+  reverse = () => {
+    const newArray = new ArraySingleLink()
+    const reverseRecursive = node => {
+      if(node !== null) {
+        newArray.unshift(node.data)
+        reverseRecursive(node.next)
+      } 
+    }
+    reverseRecursive(this.head)
+    return newArray
+  }
 
   // join = (separator=',') => {
   //   let str = ''
@@ -167,6 +162,8 @@ class ArraySingleLink {
 const arr = new ArraySingleLink()
 arr.push(3)
 arr.push(5)
-console.log(arr.shift())
-console.log(arr.shift())
-console.log(arr.shift())
+arr.push(7)
+arr.push(9)
+arr.push(10)
+arr.push(15)
+console.log(arr.reverse().toString())
