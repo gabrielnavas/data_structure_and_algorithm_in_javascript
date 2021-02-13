@@ -85,15 +85,17 @@ class ArraySingleLink {
     return newArray
   }
 
-  // join = (separator=',') => {
-  //   let str = ''
-  //   let node = this.head
-  //   while(node !== null) {
-  //     str += node.nextNode ? `${node.data}${separator}` : `${node.data}`
-  //     node = node.nextNode
-  //   }
-  //   return str
-  // }
+  join = (separator=',') => {
+    let str = ''
+    let node = this.head
+    while(node !== null) {
+      str += node.next 
+        ? `${node.data}${separator}` 
+        : `${node.data}`
+      node = node.next
+    }
+    return str
+  }
 
   // indexOf = (data) => {
   //   let position = 0
@@ -166,4 +168,4 @@ arr.push(7)
 arr.push(9)
 arr.push(10)
 arr.push(15)
-console.log(arr.reverse().toString())
+console.log(arr.join('-'))
