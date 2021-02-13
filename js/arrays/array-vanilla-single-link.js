@@ -97,15 +97,17 @@ class ArraySingleLink {
     return str
   }
 
-  // indexOf = (data) => {
-  //   let position = 0
-  //   let node = this.head
-  //   while(node !== null && node.data !== data) {
-  //     position = position + 1
-  //     node = node.nextNode
-  //   }
-  //   return node === null ? -1 : position
-  // }
+  indexOf = data => {
+    let position = 0
+    let node = this.head
+    while(node !== null && node.data !== data) {
+      position = position + 1
+      node = node.next
+    }
+    return node === null 
+      ? -1 
+      : position
+  }
 
   // lastIndexOf = (data) => {
   //   let position = 0
@@ -168,4 +170,5 @@ arr.push(7)
 arr.push(9)
 arr.push(10)
 arr.push(15)
-console.log(arr.join('-'))
+console.log(arr.indexOf(7))
+console.log(arr.indexOf(99))
