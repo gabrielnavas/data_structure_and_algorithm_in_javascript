@@ -74,7 +74,22 @@ class ArrayDoubleLink {
     return data
   }
 
+  reverse = () => {
+    const newList = new ArrayDoubleLink()
+    const reverseRecursive = node => {
+      if(node !== null) {
+        newList.unshift(node.data)
+        reverseRecursive(node.next)
+      }
+    }
+    reverseRecursive(this.head)
+    return newList
+  }
+
   toString = () => {
+    if(this.head === null) {
+      return '[ ]'
+    }
     let node = this.head
     let str = '[ '
     while(node !== null) {
@@ -88,6 +103,9 @@ class ArrayDoubleLink {
   }
 
   toStringReverse = () => {
+    if(this.head === null) {
+      return '[ ]'
+    }
     const toStrRecursive = node => {
       if(node.next === null) {
         return `[ ${node.data}`
@@ -102,14 +120,10 @@ class ArrayDoubleLink {
 }
 
 const arr = new ArrayDoubleLink()
-console.log(arr.push(3))
-console.log(arr.push(4))
-console.log(arr.unshift(5))
-console.log(arr.unshift(7))
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.count)
+arr.push(3)
+arr.push(4)
+arr.push(6)
+arr.push(9)
+arr.push(15)
+arr.push(21)
+console.log(arr.reverse().toString())
