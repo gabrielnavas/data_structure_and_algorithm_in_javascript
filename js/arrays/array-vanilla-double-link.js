@@ -60,6 +60,15 @@ class ArrayDoubleLink {
     return data
   }
 
+  shift = () => {
+    if(this.head === null) {
+      return undefined
+    }
+    let data = this.head.data
+    this.head = this.head.next
+    return data
+  }
+
   toString = () => {
     let node = this.head
     let str = '[ '
@@ -94,7 +103,8 @@ arr.push(5)
 arr.push(8)
 arr.push(11)
 arr.push(15)
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
+console.log(arr.shift())
+console.log(arr.shift())
+console.log(arr.shift())
+console.log(arr.shift())
+console.log(arr.shift())
