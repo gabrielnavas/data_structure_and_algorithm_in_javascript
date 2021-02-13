@@ -18,23 +18,25 @@ class ArrayDoubleLink {
   push = data => {
     if(this.head === null) {
       this.head = new Node(data)
-    } else {
-      let node = this.head
-      while(node.next !== null) {
-        node = node.next
-      }
-      const newNode = new Node(data, node)
-      node.next = newNode
+      return
     }
+    let node = this.head
+    while(node.next !== null) {
+      node = node.next
+    }
+    const newNode = new Node(data, node)
+    node.next = newNode
   }
+
+
 
   toString = () => {
     let node = this.head
     let str = '[ '
     while(node !== null) {
       str = node.next === null 
-        ? ` ${str}${node.data}` 
-        : ` ${str}${node.data}, `
+        ? `${str}${node.data}` 
+        : `${str}${node.data}, `
       node = node.next
     }
     str = `${str} ]`
@@ -61,5 +63,7 @@ arr.push(3)
 arr.push(5)
 arr.push(7)
 arr.push(9)
-const arrStr = arr.toStringReverse()
+const arrStr = arr.toString()
+const arrStrReverse = arr.toStringReverse()
+console.log(arrStrReverse)
 console.log(arrStr)
