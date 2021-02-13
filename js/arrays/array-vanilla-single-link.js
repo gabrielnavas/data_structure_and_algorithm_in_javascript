@@ -15,7 +15,7 @@ class ArraySingleLink {
   }
 
   push = data => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       this.head = new Node(data)
     } else {
       let previousNode = this.head
@@ -30,7 +30,7 @@ class ArraySingleLink {
   }
 
   unshift = data => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       this.head = new Node(data)
     } else {
       const newNode = new Node(data, this.head)
@@ -39,7 +39,7 @@ class ArraySingleLink {
     return ++this.count
   }
 
-  // isEmpty = () => this.head === null
+  isEmpty = () => this.head === null
 
   // pop = () => {
   //   if(this.head.nextNode === null) {
