@@ -1,68 +1,65 @@
 /**
- * INITITAL_NODE -> <- NODE -> <- NODE ->  <- NODE -\\
+ * HEAD -> <- NODE -> <- NODE ->  <- NODE -\\
  */
 
-const makeNewNode = (
-  data=0, 
-  previous=null,
-  next=null
-) => ({data, previous, next})
+class Node {
+  constructor(data=null, previous=null, next=null) {
+    this.previous = previous
+    this.next = next
+    this.data = data
+  }
+}
 
-class ArrayDoubleNode {
+class ArrayDoubleLink {
   constructor() {
-    this.initialNode = null
+    this.head = null
+  }
+
+  push = data => {
+    if(this.head === null) {
+      this.head = new Node(data)
+    } else {
+      let node = this.head
+      while(node.next !== null) {
+        node = node.next
+      }
+      const newNode = new Node(data, node)
+      node.next = newNode
+    }
   }
 
   toString = () => {
-    let node = this.initialNode
+    let node = this.head
     let str = '[ '
     while(node !== null) {
-      console.log(node.data)
-      if(node.next === null) {
-        str = ` ${str}${node.data}`
-      } else  {
-        str = ` ${str}${node.data}, `
-      }
+      str = node.next === null 
+        ? ` ${str}${node.data}` 
+        : ` ${str}${node.data}, `
       node = node.next
     }
     str = `${str} ]`
     return str
   }
 
-  push = data => {
-    if(this.initialNode === null) {
-      this.initialNode = makeNewNode(data)
-    } else {
-      let node = this.initialNode
-      while(node.next !== null) {
-        node = node.next
+  toStringReverse = () => {
+    const toStrRecursive = node => {
+      if(node.next === null) {
+        return `[ ${node.data}`
       }
-      const newNode = makeNewNode(data, node)
-      node.next = newNode
+      const str = toStrRecursive(node.next)
+      return node.previous !== null 
+        ? `${str}, ${node.data}`
+        : `${str}, ${node.data} ]`
     }
-    return this
-  }
-
-
-  // ta errado!!
-  unshift = data => {
-    if(this.initialNode === null) {
-      this.initialNode = makeNewNode(data)
-      return
-    } 
-    const inititalNodeAux = this.initialNode
-    const newNode = makeNewNode(data, null, this.initialNode)
-    inititalNodeAux.previous = newNode
-    this.inititalNodeAux = newNode
+    return toStrRecursive(this.head)
   }
 }
 
-const arr = new ArrayDoubleNode()
-// arr.push(2)
-// arr.push(4)
-// arr.push(6)
-// arr.push(8)
-// arr.push(10)
-arr.unshift(1)
-arr.unshift(11)
-console.log(arr.toString())
+const arr = new ArrayDoubleLink()
+arr.push(1)
+arr.push(3)
+arr.push(5)
+arr.push(7)
+arr.push(9)
+const arrStr = arr.toStringReverse()
+console.log(arrStr)
