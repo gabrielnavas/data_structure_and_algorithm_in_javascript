@@ -17,7 +17,7 @@ class ArrayDoubleLink {
   }
 
   push = data => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       this.head = new Node(data)
     } else {
       let node = this.head
@@ -31,7 +31,7 @@ class ArrayDoubleLink {
   }
 
   unshift = data => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       this.head = new Node(data)
     } else {
       const newNode = new Node(data, null, this.head)
@@ -42,7 +42,7 @@ class ArrayDoubleLink {
   }
 
   pop = () => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       return undefined
     }
     let data
@@ -65,7 +65,7 @@ class ArrayDoubleLink {
   }
 
   shift = () => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       return undefined
     }
     let data = this.head.data
@@ -73,6 +73,8 @@ class ArrayDoubleLink {
     --this.count
     return data
   }
+
+  isEmpty = () => this.head === null
 
   reverse = () => {
     const newList = new ArrayDoubleLink()
@@ -87,7 +89,7 @@ class ArrayDoubleLink {
   }
 
   toString = () => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       return '[ ]'
     }
     let node = this.head
@@ -103,7 +105,7 @@ class ArrayDoubleLink {
   }
 
   toStringReverse = () => {
-    if(this.head === null) {
+    if(this.isEmpty()) {
       return '[ ]'
     }
     const toStrRecursive = node => {
