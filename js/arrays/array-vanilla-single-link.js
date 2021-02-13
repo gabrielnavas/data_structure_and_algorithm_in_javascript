@@ -63,10 +63,15 @@ class ArraySingleLink {
     return data
   }
 
-  // shift = () => {
-  //   this.head = this.head.nextNode
-  //   return this
-  // }
+  shift = () => {
+    if(this.isEmpty()) {
+      return undefined
+    }
+    const data = this.head.data 
+    this.head = this.head.next
+    --this.count
+    return data
+  }
 
   // reverse = () => {
   //   const reverseRecursive = (nodeNow) => {
@@ -162,6 +167,6 @@ class ArraySingleLink {
 const arr = new ArraySingleLink()
 arr.push(3)
 arr.push(5)
-console.log(arr.pop())
-console.log(arr.pop())
-console.log(arr.pop())
+console.log(arr.shift())
+console.log(arr.shift())
+console.log(arr.shift())
