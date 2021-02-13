@@ -13,29 +13,32 @@ class Node {
 class ArrayDoubleLink {
   constructor() {
     this.head = null
+    this.count = 0
   }
 
   push = data => {
     if(this.head === null) {
       this.head = new Node(data)
-      return
+    } else {
+      let node = this.head
+      while(node.next !== null) {
+        node = node.next
+      }
+      const newNode = new Node(data, node)
+      node.next = newNode
     }
-    let node = this.head
-    while(node.next !== null) {
-      node = node.next
-    }
-    const newNode = new Node(data, node)
-    node.next = newNode
+    return ++this.count
   }
 
   unshift = data => {
     if(this.head === null) {
       this.head = new Node(data)
-      return
+    } else {
+      const newNode = new Node(data, null, this.head)
+      this.head.previous = newNode
+      this.head = newNode
     }
-    const newNode = new Node(data, null, this.head)
-    this.head.previous = newNode
-    this.head = newNode
+    return ++this.count
   }
 
   pop = () => {
@@ -57,6 +60,7 @@ class ArrayDoubleLink {
       const previousLast = previous.previous
       previousLast.next = null
     }
+    --this.count
     return data
   }
 
@@ -66,6 +70,7 @@ class ArrayDoubleLink {
     }
     let data = this.head.data
     this.head = this.head.next
+    --this.count
     return data
   }
 
@@ -97,14 +102,14 @@ class ArrayDoubleLink {
 }
 
 const arr = new ArrayDoubleLink()
-arr.push(3)
+console.log(arr.push(3))
+console.log(arr.push(4))
+console.log(arr.unshift(5))
+console.log(arr.unshift(7))
 console.log(arr.pop())
-arr.push(5)
-arr.push(8)
-arr.push(11)
-arr.push(15)
-console.log(arr.shift())
-console.log(arr.shift())
-console.log(arr.shift())
-console.log(arr.shift())
-console.log(arr.shift())
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.pop())
+console.log(arr.count)
