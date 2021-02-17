@@ -9,18 +9,18 @@ class Node {
 }
 
 class ArraySingleLink {
-  constructor( ) {
+  constructor() {
     this.head = null
     this.count = 0
   }
 
   push = data => {
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       this.head = new Node(data)
     } else {
       let previousNode = this.head
       let nodeNow = previousNode.next
-      while(nodeNow !== null) {
+      while (nodeNow !== null) {
         previousNode = nodeNow
         nodeNow = nodeNow.next
       }
@@ -30,7 +30,7 @@ class ArraySingleLink {
   }
 
   unshift = data => {
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       this.head = new Node(data)
     } else {
       const newNode = new Node(data, this.head)
@@ -42,17 +42,17 @@ class ArraySingleLink {
   isEmpty = () => this.head === null
 
   pop = () => {
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       return undefined
     }
     let data
-    if(this.head.next === null) {
+    if (this.head.next === null) {
       data = this.head.data
       this.head = null
     } else {
       let previous = this.head
       let node = previous.next
-      while(node.next !== null) {
+      while (node.next !== null) {
         previous = node
         node = node.next
       }
@@ -64,10 +64,10 @@ class ArraySingleLink {
   }
 
   shift = () => {
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       return undefined
     }
-    const data = this.head.data 
+    const data = this.head.data
     this.head = this.head.next
     --this.count
     return data
@@ -76,21 +76,21 @@ class ArraySingleLink {
   reverse = () => {
     const newArray = new ArraySingleLink()
     const reverseRecursive = node => {
-      if(node !== null) {
+      if (node !== null) {
         newArray.unshift(node.data)
         reverseRecursive(node.next)
-      } 
+      }
     }
     reverseRecursive(this.head)
     return newArray
   }
 
-  join = (separator=',') => {
+  join = (separator = ',') => {
     let str = ''
     let node = this.head
-    while(node !== null) {
-      str += node.next 
-        ? `${node.data}${separator}` 
+    while (node !== null) {
+      str += node.next
+        ? `${node.data}${separator}`
         : `${node.data}`
       node = node.next
     }
@@ -100,12 +100,12 @@ class ArraySingleLink {
   indexOf = data => {
     let position = 0
     let node = this.head
-    while(node !== null && node.data !== data) {
+    while (node !== null && node.data !== data) {
       position = position + 1
       node = node.next
     }
-    return node === null 
-      ? -1 
+    return node === null
+      ? -1
       : position
   }
 
@@ -150,8 +150,8 @@ class ArraySingleLink {
   toString = () => {
     let node = this.head
     let str = '[ '
-    while(node !== null) {
-      if(node.next === null) {
+    while (node !== null) {
+      if (node.next === null) {
         str += `${node.data} `
       } else {
         str += `${node.data}, `
